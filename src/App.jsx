@@ -21,7 +21,6 @@ import { InvitationMessage } from './components/Closing/InvitationMessage';
 import { ShareSection } from './components/Closing/ShareSection';
 import { FinalMessage } from './components/Closing/FinalMessage';
 import { EasterEgg } from './components/Closing/EasterEgg';
-import { PrintInvitation } from './components/Print/PrintInvitation';
 import { ScrollPoetry } from './components/Wedding/ScrollPoetry';
 import { SignatureReveal } from './components/Closing/SignatureReveal';
 
