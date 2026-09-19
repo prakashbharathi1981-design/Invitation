@@ -1,0 +1,257 @@
+:root {
+  --color-midnight-burgundy: #170b10;
+  --color-deep-wine: #421520;
+  --color-antique-gold: #c8a24d;
+  --color-gold-light: #e5cd89;
+  --color-gold-bright: #ffd700;
+  --color-champagne: #f5ebd2;
+  --color-warm-ivory: #fff9ed;
+  --color-muted-rose: #b87578;
+  --color-dark-text: #30201d;
+
+  --font-serif-header: 'Cinzel Decorative', 'Rozha One', Georgia, serif;
+  --font-serif-body: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-script: 'Great Vibes', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  background-color: var(--color-midnight-burgundy);
+  color: var(--color-warm-ivory);
+  font-family: var(--color-serif-body), serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Android touch optimizations */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: pan-y;
+}
+
+/* Safe area support for notched Android phones */
+.safe-top    { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-midnight-burgundy);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-deep-wine), var(--color-antique-gold));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-antique-gold);
+}
+
+/* Typography Helpers */
+.font-header {
+  font-family: var(--font-serif-header);
+}
+
+.font-body {
+  font-family: var(--font-serif-body);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.text-gold {
+  color: var(--color-antique-gold);
+  background: linear-gradient(135deg, #f5ebd2 0%, #c8a24d 50%, #997327 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #c8a24d 0%, #e5cd89 50%, #997327 100%);
+}
+
+.gold-border {
+  border: 1px solid var(--color-antique-gold);
+  box-shadow: 0 0 15px rgba(200, 162, 77, 0.25);
+}
+
+/* Glow effects */
+.gold-glow {
+  filter: drop-shadow(0 0 12px rgba(200, 162, 77, 0.6));
+}
+
+.gold-glow-text {
+  text-shadow: 0 0 10px rgba(200, 162, 77, 0.5), 0 0 20px rgba(200, 162, 77, 0.3);
+}
+
+/* Custom Gold Follower Cursor — desktop only */
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * { cursor: none !important; }
+
+  .cursor-dot {
+    position: fixed; top: 0; left: 0;
+    width: 8px; height: 8px;
+    background-color: var(--color-gold-bright);
+    border-radius: 50%; pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+    box-shadow: 0 0 10px var(--color-gold-bright);
+  }
+
+  .cursor-ring {
+    position: fixed; top: 0; left: 0;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(200, 162, 77, 0.6);
+    border-radius: 50%; pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+  }
+
+  .cursor-hover .cursor-dot { width: 12px; height: 12px; background-color: var(--color-champagne); }
+  .cursor-hover .cursor-ring { width: 50px; height: 50px; border-color: var(--color-gold-bright); background: rgba(200, 162, 77, 0.1); }
+}
+
+/* Gold Frame container */
+.cinematic-frame {
+  position: relative;
+  padding: 12px;
+  background: linear-gradient(145deg, rgba(66, 21, 32, 0.6), rgba(23, 11, 16, 0.9));
+  border: 2px solid var(--color-antique-gold);
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(200, 162, 77, 0.3);
+}
+
+.cinematic-frame::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px dashed rgba(200, 162, 77, 0.5);
+  pointer-events: none;
+}
+
+/* Container limits */
+.section-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Touch-friendly minimum tap target */
+button, a {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Phone-specific overrides */
+@media (max-width: 480px) {
+  .section-container { padding: 0 12px; }
+
+  /* Reduce heavy box-shadows on mobile for perf */
+  .cinematic-frame {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(200,162,77,0.2);
+  }
+
+  /* Gold button full-width on small screens */
+  .gold-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Button Styling with Gold Line Hover */
+.gold-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, rgba(66, 21, 32, 0.9) 0%, rgba(23, 11, 16, 0.95) 100%);
+  color: var(--color-champagne);
+  border: 1px solid var(--color-antique-gold);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.gold-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-gold-bright);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px var(--color-gold-bright);
+}
+
+.gold-btn:hover {
+  background: linear-gradient(135deg, var(--color-deep-wine) 0%, var(--color-midnight-burgundy) 100%);
+  color: #ffffff;
+  border-color: var(--color-gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(200, 162, 77, 0.3);
+}
+
+.gold-btn:hover::after {
+  width: 80%;
+}
+
+/* Fixed elements respect safe area on Android */
+.fixed-bottom-safe {
+  bottom: max(24px, env(safe-area-inset-bottom));
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print View specific styles */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
+

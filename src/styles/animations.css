@@ -1,0 +1,140 @@
+/* SVG Path Draw Keyframe */
+@keyframes svgPathDraw {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Floating Gold Particle Movement */
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-40px) translateX(15px) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-80px) translateX(-10px) rotate(360deg);
+    opacity: 0.1;
+  }
+}
+
+/* Rotating Mandala */
+@keyframes rotateMandala {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Diya Flame Flicker */
+@keyframes diyaFlicker {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+  }
+  50% {
+    transform: scale(1.12) translateY(-2px);
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1)) drop-shadow(0 0 35px rgba(200, 162, 77, 0.8));
+  }
+}
+
+/* Lotus Petal Open */
+@keyframes lotusPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Shimmer animation for gold typography */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-rotate-slow {
+  animation: rotateMandala 60s linear infinite;
+}
+
+.animate-diya-flame {
+  animation: diyaFlicker 2.5s ease-in-out infinite;
+}
+
+.animate-lotus-pulse {
+  animation: lotusPulse 4s ease-in-out infinite;
+}
+
+/* Cinematic curtain wipe */
+@keyframes curtainUp {
+  from { transform: scaleY(1); transform-origin: bottom; }
+  to   { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Gold border pulse */
+@keyframes borderPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(200,162,77,0.3); }
+  50%       { box-shadow: 0 0 35px rgba(200,162,77,0.8), 0 0 60px rgba(255,215,0,0.3); }
+}
+
+.animate-border-pulse {
+  animation: borderPulse 3s ease-in-out infinite;
+}
+
+/* Text blur-in */
+@keyframes blurIn {
+  from { opacity: 0; filter: blur(12px); transform: translateY(15px); }
+  to   { opacity: 1; filter: blur(0);    transform: translateY(0); }
+}
+
+.animate-blur-in {
+  animation: blurIn 1s ease-out forwards;
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #c8a24d 0%,
+    #f5ebd2 25%,
+    #ffd700 50%,
+    #f5ebd2 75%,
+    #c8a24d 100%
+  );
+  background-size: 200% auto;
+  color: #c8a24d;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 5s linear infinite;
+}
+
+/* Mobile: reduce heavy GPU animations for Android performance */
+@media (max-width: 768px) {
+  .shimmer-text {
+    animation-duration: 8s;
+  }
+  .animate-rotate-slow {
+    animation-duration: 90s;
+  }
+  .animate-diya-flame {
+    animation-duration: 3.5s;
+  }
+}
+
