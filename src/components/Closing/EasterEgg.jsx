@@ -73,7 +73,7 @@ export const EasterEgg = () => {
                 THANK YOU FOR BEING PART OF OUR SPECIAL DAY ❤️
               </h4>
               <p className="font-body text-base text-[#FFD700]">
-                Gokulakrishnan & Elamathi look forward to seeing you!
+                Gokulakrishnan & Karpagavalli look forward to seeing you!
               </p>
             </motion.div>
           )}

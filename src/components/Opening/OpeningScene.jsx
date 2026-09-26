@@ -162,7 +162,7 @@ export const OpeningScene = ({ onReveal, invitationRevealed }) => {
         </motion.div>
 
         <div className="mb-8" style={{ perspective: 800 }}>
-          <SplitReveal text="ELAMATHI" className="font-header text-3xl sm:text-5xl md:text-6xl text-[#FFF9ED] tracking-wide gold-glow-text" delay={4.1} stagger={0.06} />
+          <SplitReveal text="KARPAGAVALLI" className="font-header text-3xl sm:text-5xl md:text-6xl text-[#FFF9ED] tracking-wide gold-glow-text" delay={4.1} stagger={0.06} />
         </div>
 
         {/* Date pill */}

@@ -66,7 +66,7 @@ export const FinalMessage = () => {
           <div className="absolute inset-0 rounded-full overflow-hidden border-2 border-[#C8A24D] shadow-[0_0_40px_rgba(200,162,77,0.5)]">
             <img
               src="/images/card.png"
-              alt="Gokulakrishnan & Elamathi"
+              alt="Gokulakrishnan & Karpagavalli"
               className="w-full h-full object-contain object-top bg-gradient-to-b from-[#421520] to-[#170B10]"
             />
             <div className="absolute inset-0 rounded-full" style={{ background: 'radial-gradient(circle, transparent 45%, rgba(8,3,6,0.7) 100%)' }} />
@@ -96,7 +96,7 @@ export const FinalMessage = () => {
         >
           GOKULAKRISHNAN
           <span className="block font-script text-4xl text-[#FFF9ED] my-2">&</span>
-          ELAMATHI
+          KARPAGAVALLI
         </motion.h2>
 
         <motion.p
@@ -145,7 +145,7 @@ export const FinalMessage = () => {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 2.5, ease: 'easeInOut', delay: 2.5 }}
           >
-            Gokulakrishnan & Elamathi
+            Gokulakrishnan & Karpagavalli
           </motion.p>
         </motion.div>
 

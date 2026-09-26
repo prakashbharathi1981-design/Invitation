@@ -126,7 +126,7 @@ export const SignatureReveal = () => (
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={vp}
             transition={{ duration: 1.2, delay: 3.8 }}
           >
-            Elamathi
+            Karpagavalli
           </motion.text>
         </svg>
       </motion.div>

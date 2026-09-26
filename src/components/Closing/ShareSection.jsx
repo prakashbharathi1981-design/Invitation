@@ -56,7 +56,7 @@ const ShareCard = ({ icon, label, sublabel, color, onClick, href, delay }) => {
 
 export const ShareSection = () => {
   const [copied, setCopied] = useState(false);
-  const shareText = "You're invited to celebrate the wedding reception of Gokulakrishnan & Elamathi on 24 October 2026.";
+  const shareText = "You're invited to celebrate the wedding reception of Gokulakrishnan & Karpagavalli on 24 October 2026.";
   const currentUrl = window.location.origin + window.location.pathname;
 
   const handleWhatsApp = () => window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + currentUrl)}`, '_blank');

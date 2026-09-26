@@ -146,7 +146,7 @@ export const CoupleReveal = () => {
           </h2>
           <div className="font-script text-4xl sm:text-5xl text-[#FFD700]">&</div>
           <h2 className="font-header text-2xl sm:text-4xl md:text-5xl text-[#FFF9ED] tracking-wider gold-glow-text">
-            ELAMATHI
+            KARPAGAVALLI
           </h2>
         </motion.div>
 
@@ -165,54 +165,120 @@ export const CoupleReveal = () => {
 
       {/* ── PART 2: FULL-WIDTH CINEMATIC COUPLE PHOTO ── */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 50, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={vp}
-        transition={{ duration: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="relative w-full max-w-xs sm:max-w-2xl mx-auto px-4 sm:px-8"
+        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        className="relative w-full max-w-xs sm:max-w-xl mx-auto px-4 sm:px-8"
       >
-        {/* Outer gold glow ring */}
-        <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-[#C8A24D]/30 via-transparent to-[#FFD700]/20 blur-xl pointer-events-none z-0" />
+        {/* ── Outer pulsing gold aura ── */}
+        <motion.div
+          className="absolute -inset-6 rounded-3xl pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse, rgba(200,162,77,0.25) 0%, transparent 70%)' }}
+          animate={{ scale: [1, 1.08, 1], opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        />
 
-        {/* Photo container with parallax */}
-        <div className="relative rounded-xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.9),0_0_40px_rgba(200,162,77,0.25)] border border-[#C8A24D]/50">
-          {/* Parallax image wrapper */}
+        {/* ── Spinning dashed outer ring ── */}
+        <motion.div
+          className="absolute -inset-3 rounded-2xl border-2 border-dashed border-[#C8A24D]/30 pointer-events-none"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+        />
+        {/* ── Counter-spin inner ring ── */}
+        <motion.div
+          className="absolute -inset-1 rounded-xl border border-[#FFD700]/20 pointer-events-none"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+        />
+
+        {/* ── 4 animated gold corner ornaments ── */}
+        {[['top-0 left-0', 'origin-top-left'], ['top-0 right-0 scale-x-[-1]', 'origin-top-right'], ['bottom-0 left-0 scale-y-[-1]', 'origin-bottom-left'], ['bottom-0 right-0 scale-[-1]', 'origin-bottom-right']].map(([pos], i) => (
           <motion.div
-            style={{ y: photoY, scale: photoScale }}
-            className="relative w-full"
+            key={i}
+            className={`absolute ${pos} w-10 h-10 pointer-events-none z-40`}
+            initial={{ opacity: 0, scale: 0.3 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={vp}
+            transition={{ duration: 0.7, delay: 0.3 + i * 0.1, ease: 'backOut' }}
           >
+            <svg viewBox="0 0 40 40" className="w-full h-full" style={{ filter: 'drop-shadow(0 0 4px rgba(200,162,77,0.8))' }}>
+              <path d="M 2 2 L 2 16 M 2 2 L 16 2" stroke="#FFD700" strokeWidth="2" strokeLinecap="round" fill="none" />
+              <circle cx="2" cy="2" r="2.5" fill="#FFD700" />
+              <path d="M 8 2 C 8 12 12 16 22 16" stroke="#C8A24D" strokeWidth="1" strokeLinecap="round" fill="none" opacity="0.6" />
+            </svg>
+          </motion.div>
+        ))}
+
+        {/* ── Floating gold dots around frame ── */}
+        {[...Array(8)].map((_, i) => {
+          const angle = (i / 8) * 360;
+          const rad = (angle * Math.PI) / 180;
+          return (
+            <motion.div
+              key={i}
+              className="absolute w-1.5 h-1.5 rounded-full bg-[#FFD700] pointer-events-none z-30"
+              style={{
+                left: `${50 + 52 * Math.cos(rad)}%`,
+                top: `${50 + 52 * Math.sin(rad)}%`,
+                boxShadow: '0 0 6px #FFD700',
+              }}
+              animate={{ opacity: [0.2, 1, 0.2], scale: [0.6, 1.4, 0.6] }}
+              transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.3, ease: 'easeInOut' }}
+            />
+          );
+        })}
+
+        {/* ── Main photo frame ── */}
+        <div
+          className="relative rounded-2xl overflow-hidden"
+          style={{
+            border: '2px solid rgba(200,162,77,0.7)',
+            boxShadow: '0 0 0 1px rgba(255,215,0,0.15), 0 25px 60px rgba(0,0,0,0.9), 0 0 40px rgba(200,162,77,0.3), inset 0 0 20px rgba(200,162,77,0.05)',
+          }}
+        >
+          {/* Parallax image */}
+          <motion.div style={{ y: photoY, scale: photoScale }}>
             <img
               src="/images/card.png"
-              alt="Gokulakrishnan and Elamathi"
-              className="w-full object-contain object-center block bg-gradient-to-b from-[#421520]/50 to-[#170B10]"
-              style={{ minHeight: '260px', maxHeight: '360px' }}
+              alt="Gokulakrishnan and Karpagavalli"
+              className="w-full block object-contain object-center"
+              style={{ maxHeight: '420px', background: 'linear-gradient(to bottom, #2A1017, #170B10)' }}
               loading="lazy"
             />
           </motion.div>
 
-          {/* Grain texture */}
+          {/* Grain */}
           <GrainOverlay />
 
-          {/* Floral SVG overlay on photo edges */}
+          {/* Floral SVG corners over photo */}
           <FloralPhotoOverlay />
 
-          {/* Floating gold particles */}
+          {/* Floating particles */}
           <PhotoParticles />
 
-          {/* Bottom fade into section bg */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#170B10] to-transparent z-30 pointer-events-none" />
-
           {/* Top fade */}
-          <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#170B10] to-transparent z-30 pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#170B10] to-transparent z-30 pointer-events-none" />
+          {/* Bottom fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#170B10] to-transparent z-30 pointer-events-none" />
 
-          {/* Centered text overlay — minimal, breathing room */}
-          <div className="absolute bottom-10 left-0 right-0 z-40 text-center px-4">
+          {/* Shimmer sweep over photo */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none z-25"
+            style={{ background: 'linear-gradient(105deg, transparent 30%, rgba(255,215,0,0.06) 50%, transparent 70%)' }}
+            animate={{ x: ['-100%', '200%'] }}
+            transition={{ duration: 4, repeat: Infinity, repeatDelay: 3, ease: 'easeInOut' }}
+          />
+
+          {/* Bottom text overlay */}
+          <div className="absolute bottom-8 left-0 right-0 z-40 text-center px-4">
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={vp}
               transition={{ duration: 1.2, delay: 0.6 }}
               className="font-sans text-[10px] sm:text-xs uppercase tracking-[0.4em] text-[#C8A24D]"
+              style={{ textShadow: '0 0 10px rgba(200,162,77,0.8)' }}
             >
               A NEW CHAPTER BEGINS
             </motion.p>
@@ -251,8 +317,7 @@ export const CoupleReveal = () => {
             <FloralCorner position="top-right" className="absolute top-2 right-2 w-14 h-14 opacity-50" />
             <span className="font-sans text-[10px] uppercase tracking-[0.35em] text-[#C8A24D] block mb-3">The Bride</span>
             <h3 className="font-header text-xl sm:text-2xl text-[#FFF9ED] mb-2">
-              ELAMATHI
-              <span className="text-xs font-sans block text-[#C8A24D] mt-1 tracking-wider">@ M. KARPAGAVALLI</span>
+              KARPAGAVALLI
             </h3>
             <p className="font-sans text-sm text-[#FFD700] font-semibold tracking-wider">B.E., (CS), ACU.</p>
             <p className="font-body text-base text-[#F5EBD2] opacity-80 mt-1">TCS, Coimbatore</p>

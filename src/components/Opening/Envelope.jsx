@@ -241,7 +241,7 @@ export const Envelope = ({ onOpen, guestName }) => {
               <div className="absolute inset-[10px] rounded-full overflow-hidden border-2 border-[#C8A24D] shadow-[0_0_30px_rgba(200,162,77,0.6),inset_0_0_15px_rgba(0,0,0,0.5)]">
                 <img
                   src="/images/card.png"
-                  alt="Gokulakrishnan & Elamathi"
+                  alt="Gokulakrishnan & Karpagavalli"
                   className="w-full h-full object-cover object-[center_30%] scale-100 origin-center"
                 />
                 {/* Radial vignette */}
@@ -294,7 +294,7 @@ export const Envelope = ({ onOpen, guestName }) => {
 
               <div className="mb-5">
                 <SplitText
-                  text="Elamathi"
+                  text="Karpagavalli"
                   className="font-header text-2xl sm:text-3xl text-[#FFF9ED] tracking-wide gold-glow-text"
                   delay={0.9}
                   stagger={0.05}

@@ -35,8 +35,8 @@ export const VenueSection = () => {
   const setActive = (v) => setHovered(v);
 
   const calendarUrl = () => {
-    const t = encodeURIComponent("Gokulakrishnan & Elamathi Wedding Reception");
-    const d = encodeURIComponent("You are warmly invited to celebrate the wedding reception of Gokulakrishnan & Elamathi.");
+    const t = encodeURIComponent("Gokulakrishnan & Karpagavalli Wedding Reception");
+    const d = encodeURIComponent("You are warmly invited to celebrate the wedding reception of Gokulakrishnan & Karpagavalli.");
     const l = encodeURIComponent("Sri Krishna Mahal, Nachipalayam Road Corner, Trichy – Kovai Main Road, Avinashipalayam");
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${t}&details=${d}&location=${l}&dates=20261024T123000Z/20261024T153000Z`;
   };

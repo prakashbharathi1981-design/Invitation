@@ -121,7 +121,7 @@ export const FamilyBlessings = () => {
             transition={{ duration: 1, delay: 0.4 }}
             className="font-body text-xl sm:text-2xl text-[#F5EBD2] leading-relaxed max-w-xl mx-auto italic font-medium my-6"
           >
-            "We cordially solicit your esteemed presence with family and friends on the auspicious occasion of the wedding reception of Gokulakrishnan & Elamathi."
+            "We cordially solicit your esteemed presence with family and friends on the auspicious occasion of the wedding reception of Gokulakrishnan & Karpagavalli."
           </motion.p>
 
           <FloralDivider className="w-48 mx-auto my-8" />

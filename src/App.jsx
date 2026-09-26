@@ -144,7 +144,7 @@ export function App() {
       <div className="fixed z-40" style={{ top: 'max(16px, env(safe-area-inset-top))', right: '16px' }}>
         <a
           href="/images/invitation_card.jpg"
-          download="Gokulakrishnan_Elamathi_Invitation.jpg"
+          download="Gokulakrishnan_Karpagavalli_Invitation.jpg"
           className="px-4 py-2 text-xs font-sans font-bold uppercase tracking-widest bg-[#421520]/80 text-[#FFD700] border border-[#C8A24D] rounded-full shadow-lg backdrop-blur-sm hover:bg-[#C8A24D] hover:text-[#170B10] transition-all inline-block"
         >
           📥 SAVE CARD
