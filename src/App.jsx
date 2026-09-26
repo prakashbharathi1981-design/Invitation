@@ -7,9 +7,15 @@ import './styles/globals.css';
 import './styles/animations.css';
 
 // Components
+import { LoadingScreen } from './components/common/LoadingScreen';
 import { CustomCursor } from './components/common/CustomCursor';
+import { CursorTrail } from './components/common/CursorTrail';
 import { GoldParticles } from './components/common/GoldParticles';
+import { StarField } from './components/common/StarField';
 import { MusicButton } from './components/common/MusicButton';
+import { CornerDiyas } from './components/common/CornerDiyas';
+import { RangoliDivider } from './components/common/RangoliDivider';
+import { SectionWipe } from './components/common/SectionWipe';
 import { Envelope } from './components/Opening/Envelope';
 import { OpeningScene } from './components/Opening/OpeningScene';
 import { CoupleReveal } from './components/Couple/CoupleReveal';
@@ -18,15 +24,16 @@ import { VenueSection } from './components/Venue/VenueSection';
 import { FamilyBlessings } from './components/Family/FamilyBlessings';
 import { TraditionalInterlude } from './components/Interlude/TraditionalInterlude';
 import { InvitationMessage } from './components/Closing/InvitationMessage';
+import { RSVPSection } from './components/Closing/RSVPSection';
 import { ShareSection } from './components/Closing/ShareSection';
 import { FinalMessage } from './components/Closing/FinalMessage';
 import { EasterEgg } from './components/Closing/EasterEgg';
 import { ScrollPoetry } from './components/Wedding/ScrollPoetry';
+import { EventSchedule } from './components/Wedding/EventSchedule';
 import { SignatureReveal } from './components/Closing/SignatureReveal';
 
 const SecretIntro = ({ onComplete }) => {
   const [phase, setPhase] = useState(0);
-  // 0=line1, 1=line2, 2=fading out
   useEffect(() => {
     const t1 = setTimeout(() => setPhase(1), 3000);
     const t2 = setTimeout(() => setPhase(2), 6500);
@@ -40,14 +47,12 @@ const SecretIntro = ({ onComplete }) => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1.8, ease: 'easeInOut' }}
     >
-      {/* Single ambient gold dot in center before text */}
       <motion.div
         className="absolute w-2 h-2 rounded-full bg-[#C8A24D]"
         style={{ boxShadow: '0 0 20px #C8A24D, 0 0 40px rgba(200,162,77,0.4)' }}
         animate={{ scale: [1, 1.8, 1], opacity: [0.4, 1, 0.4] }}
         transition={{ duration: 3, repeat: Infinity }}
       />
-
       <AnimatePresence mode="wait">
         {phase === 0 && (
           <motion.div key="p1" className="space-y-4"
@@ -64,11 +69,7 @@ const SecretIntro = ({ onComplete }) => {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 1.8 }}
           >
-            <motion.div
-              className="text-4xl"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >🔊</motion.div>
+            <motion.div className="text-4xl" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }}>🔊</motion.div>
             <p className="font-sans text-xs sm:text-sm uppercase tracking-[0.35em] text-[#FFF9ED]/60">
               Please turn on your sound<br />for the best experience
             </p>
@@ -86,25 +87,21 @@ const SecretIntro = ({ onComplete }) => {
 };
 
 export function App() {
+  const [loadingDone, setLoadingDone] = useState(false);
   const [introDone, setIntroDone] = useState(false);
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
   const [invitationRevealed, setInvitationRevealed] = useState(false);
   const [guestName, setGuestName] = useState('');
 
-  // Extract Guest Name from URL parameter (?guest=GuestName) safely
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const guest = params.get('guest');
-    if (guest) {
-      setGuestName(guest);
-    }
+    if (guest) setGuestName(guest);
   }, []);
 
-  // Initialize Lenis smooth scroll (desktop only — causes jank on Android)
   useEffect(() => {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return; // native scroll is smoother on Android
-
+    if (isTouchDevice) return;
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -112,35 +109,35 @@ export function App() {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
-      touchMultiplier: 2
+      touchMultiplier: 2,
     });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
+    return () => lenis.destroy();
   }, []);
 
   const isMobile = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
   return (
     <div className="relative min-h-screen bg-[#170B10] text-[#FFF9ED] font-body selection:bg-[#C8A24D] selection:text-[#170B10]">
-      {/* Custom Desktop Gold Glowing Follower Cursor — hidden on touch */}
-      {!isMobile && <CustomCursor />}
 
-      {/* Floating Ambient Gold Dust Particles */}
+      {/* Parallax star field — always visible */}
+      <StarField />
+
+      {/* Custom cursor + trail — desktop only */}
+      {!isMobile && <CustomCursor />}
+      {!isMobile && <CursorTrail />}
+
+      {/* Floating gold dust */}
       <GoldParticles count={30} />
 
-      {/* Ambient Wedding Flute Audio Toggle Button */}
+      {/* Corner diya flames */}
+      <CornerDiyas />
+
+      {/* Music toggle */}
       <MusicButton />
 
-      {/* Top Bar Download Card Button */}
+      {/* Save card button */}
       <div className="fixed z-40" style={{ top: 'max(16px, env(safe-area-inset-top))', right: '16px' }}>
         <a
           href="/images/invitation_card.jpg"
@@ -151,27 +148,28 @@ export function App() {
         </a>
       </div>
 
+      {/* Loading screen */}
       <AnimatePresence>
-        {!introDone && <SecretIntro onComplete={() => setIntroDone(true)} />}
+        {!loadingDone && <LoadingScreen onComplete={() => setLoadingDone(true)} />}
       </AnimatePresence>
 
-      {/* Initial Digital Envelope Screen */}
+      {/* Secret intro */}
+      <AnimatePresence>
+        {loadingDone && !introDone && <SecretIntro onComplete={() => setIntroDone(true)} />}
+      </AnimatePresence>
+
+      {/* Envelope */}
       <AnimatePresence>
         {introDone && !isEnvelopeOpen && (
-          <Envelope
-            guestName={guestName}
-            onOpen={() => setIsEnvelopeOpen(true)}
-          />
+          <Envelope guestName={guestName} onOpen={() => setIsEnvelopeOpen(true)} />
         )}
       </AnimatePresence>
 
-      {/* Main Cinematic Scroll Experience */}
+      {/* Main content */}
       {isEnvelopeOpen && (
         <main className="relative">
-          {/* Section 01: WOW Opening — shows until TAP TO OPEN INVITATION */}
           <OpeningScene onReveal={() => setInvitationRevealed(true)} invitationRevealed={invitationRevealed} />
 
-          {/* Everything below only shows after button tap */}
           <AnimatePresence>
             {invitationRevealed && (
               <motion.div
@@ -179,44 +177,47 @@ export function App() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
               >
-                {/* Section 02: Couple Reveal */}
                 <CoupleReveal />
+                <SectionWipe />
+                <RangoliDivider />
 
-                {/* Scroll Poetry */}
                 <ScrollPoetry />
+                <SectionWipe />
 
-                {/* Section 03 & 04: The Moment & The Celebration */}
                 <DateSection />
+                <SectionWipe />
+                <EventSchedule />
+                <SectionWipe />
+                <RangoliDivider />
 
-                {/* Section 05: Venue */}
                 <VenueSection />
+                <SectionWipe />
 
-                {/* Section 06: Family Blessings */}
                 <FamilyBlessings />
+                <SectionWipe />
+                <RangoliDivider />
 
-                {/* Section 07: Traditional Interlude */}
                 <TraditionalInterlude />
+                <SectionWipe />
 
-                {/* Section 08: Invitation Message */}
                 <InvitationMessage />
+                <SectionWipe />
+                <RangoliDivider />
 
-                {/* Section 10: Digital Sharing */}
+                <RSVPSection />
+                <SectionWipe />
+
                 <ShareSection />
+                <SectionWipe />
 
-                {/* Section 15: Final Message */}
                 <FinalMessage />
-
-                {/* Signature Reveal */}
                 <SignatureReveal />
-
-                {/* Section 16: Easter Egg */}
                 <EasterEgg />
               </motion.div>
             )}
           </AnimatePresence>
         </main>
       )}
-
     </div>
   );
 }

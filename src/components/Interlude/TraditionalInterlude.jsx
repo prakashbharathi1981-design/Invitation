@@ -120,7 +120,7 @@ export const TraditionalInterlude = () => {
           transition={{ duration: 1 }}
           className="font-header text-3xl sm:text-5xl text-[#FFD700] tracking-widest my-4"
         >
-          शुभ / AUSPICIOUS
+          AUSPICIOUS
         </motion.h3>
 
         <motion.div
