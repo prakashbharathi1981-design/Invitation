@@ -29,7 +29,7 @@ export const PrintInvitation = ({ onClose }) => {
           {/* Actual invitation card image */}
           <div className="flex justify-center mb-2">
             <img
-              src="/images/invitation_card.jpg"
+              src="/images/invitation_card.jpeg"
               alt="Wedding Invitation Card"
               className="max-w-full rounded border-2 border-[#C8A24D] shadow-md"
               style={{ maxHeight: '280px', objectFit: 'contain' }}

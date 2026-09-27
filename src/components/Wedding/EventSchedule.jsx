@@ -58,26 +58,6 @@ const KalashamIcon = () => (
   </svg>
 );
 
-const MangalSutraIcon = () => (
-  <svg viewBox="0 0 40 40" className="w-full h-full" fill="none">
-    {/* Chain */}
-    <path d="M10 8 Q15 6 20 8 Q25 10 30 8" stroke="#C8A24D" strokeWidth="1.5" strokeLinecap="round"/>
-    <path d="M10 8 Q8 16 10 24 Q14 32 20 34 Q26 32 30 24 Q32 16 30 8" stroke="#C8A24D" strokeWidth="1.5" fill="none"/>
-    {/* Pendant */}
-    <circle cx="20" cy="26" r="5" stroke="#FFD700" strokeWidth="2"/>
-    <circle cx="20" cy="26" r="2.5" fill="rgba(255,215,0,0.3)" stroke="#FFD700" strokeWidth="1"/>
-    <circle cx="20" cy="26" r="1" fill="#FFD700"/>
-    {/* Black beads */}
-    {[12,15,18,22,25,28].map((x, i) => (
-      <circle key={i} cx={x} cy={i % 2 === 0 ? 14 : 16} r="1.5" fill="#170B10" stroke="#C8A24D" strokeWidth="0.5"/>
-    ))}
-    <motion.circle cx="20" cy="26" r="7" stroke="#FFD700" strokeWidth="0.5" strokeDasharray="2 3"
-      animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-      style={{ transformOrigin: '20px 26px' }}
-    />
-  </svg>
-);
-
 const ReceptionIcon = () => (
   <svg viewBox="0 0 40 40" className="w-full h-full" fill="none">
     {/* Stars */}
