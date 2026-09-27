@@ -32,76 +32,35 @@ const Equalizer = () => {
 
 export const MusicButton = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioCtxRef = useRef(null);
-  const isStartedRef = useRef(false);
-  const timerRef = useRef(null);
-  const droneRefs = useRef([]);
+  const audioRef = useRef(null);
 
-  const startWeddingMelody = () => {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!audioCtxRef.current) audioCtxRef.current = new AudioCtx();
-      const ctx = audioCtxRef.current;
-      if (ctx.state === 'suspended') ctx.resume();
+  useEffect(() => {
+    const audio = new Audio('/images/RINGTONE.mp3');
+    audio.loop = true;
+    audio.volume = 0.6;
+    audioRef.current = audio;
+    return () => {
+      audio.pause();
+      audio.src = '';
+    };
+  }, []);
 
-      const melodyNotes = [261.63, 293.66, 329.63, 369.99, 392.00, 440.00, 493.88, 523.25, 493.88, 440.00, 392.00, 369.99, 329.63, 293.66, 261.63];
-      let step = 0;
-
-      const droneOsc1 = ctx.createOscillator();
-      const droneOsc2 = ctx.createOscillator();
-      const droneGain = ctx.createGain();
-      droneOsc1.type = 'triangle';
-      droneOsc1.frequency.setValueAtTime(130.81, ctx.currentTime);
-      droneOsc2.type = 'sine';
-      droneOsc2.frequency.setValueAtTime(196.00, ctx.currentTime);
-      droneGain.gain.setValueAtTime(0.08, ctx.currentTime);
-      droneOsc1.connect(droneGain);
-      droneOsc2.connect(droneGain);
-      droneGain.connect(ctx.destination);
-      droneOsc1.start();
-      droneOsc2.start();
-      droneRefs.current = [droneOsc1, droneOsc2, droneGain];
-
-      const playNextFluteNote = () => {
-        if (!isStartedRef.current) return;
-        const now = ctx.currentTime;
-        const freq = melodyNotes[step % melodyNotes.length];
-        step++;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now);
-        gain.gain.setValueAtTime(0.001, now);
-        gain.gain.linearRampToValueAtTime(0.12, now + 0.3);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 1.9);
-        timerRef.current = setTimeout(playNextFluteNote, 1400 + Math.random() * 600);
-      };
-
-      isStartedRef.current = true;
-      playNextFluteNote();
+  const toggle = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      audio.play().catch(() => {});
       setIsPlaying(true);
-    } catch (e) { console.warn('Audio error', e); }
-  };
-
-  const stopWeddingMelody = () => {
-    isStartedRef.current = false;
-    if (timerRef.current) clearTimeout(timerRef.current);
-    if (audioCtxRef.current) {
-      try { audioCtxRef.current.suspend(); } catch (e) {}
     }
-    setIsPlaying(false);
   };
-
-  useEffect(() => () => stopWeddingMelody(), []);
 
   return (
     <div className="fixed z-50" style={{ bottom: 'max(24px, env(safe-area-inset-bottom))', right: '16px' }}>
       <motion.button
-        onClick={() => isPlaying ? stopWeddingMelody() : startWeddingMelody()}
+        onClick={toggle}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.92 }}
         aria-label="Toggle Wedding Music"
@@ -111,7 +70,6 @@ export const MusicButton = () => {
             : 'bg-[#170B10]/90 text-[#F5EBD2]'
         }`}
       >
-        {/* Shimmer when playing */}
         {isPlaying && (
           <motion.div
             className="absolute inset-0 pointer-events-none"
