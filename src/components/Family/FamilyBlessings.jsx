@@ -97,7 +97,7 @@ export const FamilyBlessings = () => {
           />
 
           <GoldLine delay={0.4} />
-          <FamilyName label="Groom's Parents" name="Mr. N. Muthusamy & Mrs. M. Nirmala" delay={0.5} />
+          <FamilyName label="Groom's Parents" name={<>Mr. N. Muthusamy &<br />Mrs. M. Nirmala</>} delay={0.5} />
 
           <motion.div
             className="font-script text-4xl text-[#FFD700] my-2"
@@ -109,7 +109,7 @@ export const FamilyBlessings = () => {
             &
           </motion.div>
 
-          <FamilyName label="Bride's Parents" name="Mr. T. Murugesan & Mrs. M. Visalakshi" delay={0.9} />
+          <FamilyName label="Bride's Parents" name={<>Mr. T. Murugesan &<br />Mrs. M. Visalakshi</>} delay={0.9} />
           <GoldLine delay={1.1} />
 
           <FloralDivider className="w-64 mx-auto my-8" />
@@ -121,7 +121,7 @@ export const FamilyBlessings = () => {
             transition={{ duration: 1, delay: 0.4 }}
             className="font-body text-base sm:text-2xl text-[#F5EBD2] leading-relaxed max-w-xl mx-auto italic font-medium my-4 sm:my-6"
           >
-            "We cordially solicit your esteemed presence with family and friends on the auspicious occasion of the wedding reception of Gokulakrishnan & Karpagavalli."
+            "We cordially solicit your esteemed presence with family and friends on the auspicious occasion of the wedding reception of M. Gokulakrishnan & M. Karpagavalli."
           </motion.p>
 
           <FloralDivider className="w-48 mx-auto my-8" />

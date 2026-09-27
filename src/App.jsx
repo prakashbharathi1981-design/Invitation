@@ -14,6 +14,7 @@ import { GoldParticles } from './components/common/GoldParticles';
 import { StarField } from './components/common/StarField';
 import { MusicButton } from './components/common/MusicButton';
 import { CornerDiyas } from './components/common/CornerDiyas';
+import { FloatingPetals } from './components/common/FloatingPetals';
 import { RangoliDivider } from './components/common/RangoliDivider';
 import { SectionWipe } from './components/common/SectionWipe';
 import { Envelope } from './components/Opening/Envelope';
@@ -131,6 +132,9 @@ export function App() {
 
       {/* Floating gold dust */}
       <GoldParticles count={30} />
+
+      {/* Floating flower petals */}
+      <FloatingPetals count={20} showSparkles={true} />
 
       {/* Corner diya flames */}
       <CornerDiyas />

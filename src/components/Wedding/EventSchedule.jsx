@@ -147,13 +147,13 @@ const DaySeparator = ({ day, date, tamil }) => (
 /* ── Event data with Tamil ── */
 const day1 = [
   { id: 1, tamil: 'நிச்சயதார்த்தம்', time: 'காலை 11.00 – 12.00 மணி', icon: RingIcon, color: '#FFD700' },
-  { id: 2, tamil: 'பட்டினிச்சாத் இருந்து மதியம்', time: 'மதியம் 12.00 – 1.30 மணி', icon: LeafPlateIcon, color: '#C8A24D' },
+  { id: 2, tamil: 'பட்டினிசாதவிருந்து', time: 'மதியம் 12.00 – 1.30 மணி', icon: LeafPlateIcon, color: '#C8A24D' },
   { id: 3, tamil: 'முகூர்த்தக்கால்', time: 'மாலை 5.00 – 6.00 மணி', icon: KalashamIcon, color: '#FFD700' },
   { id: 4, tamil: 'வரவேற்பு', time: 'மாலை 6.00 – 9.00 மணி', icon: ReceptionIcon, color: '#C8A24D' },
 ];
 
 const day2 = [
-  { id: 5, tamil: 'சமூகார்த்தம்', time: 'காலை 5.00 – 6.00 மணி', icon: SunriseIcon, color: '#FFD700' },
+  { id: 5, tamil: 'சுப முகூர்த்தம்', time: 'காலை 5.00 – 6.00 மணி', icon: SunriseIcon, color: '#FFD700' },
   { id: 6, tamil: 'சம்பந்தி விருந்து', time: 'மதியம் 12.00 – 1.00 மணி', icon: FeastIcon, color: '#C8A24D' },
 ];
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { LotusSVG } from '../common/LotusSVG';
 import { FloralDivider } from '../common/FloralSVG';
 import { Calendar, Clock, Sparkles } from 'lucide-react';
 
@@ -85,14 +84,6 @@ export const DateSection = () => {
   return (
     <section ref={sectionRef} className="relative min-h-screen py-24 px-4 bg-gradient-to-b from-[#170B10] via-[#35121B] to-[#170B10] overflow-hidden">
 
-      {/* Background lotus glow */}
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-        style={{ opacity: 0.06 }}
-      >
-        <LotusSVG className="w-[600px] h-[600px]" animatePetals={false} />
-      </motion.div>
-
       <div className="section-container relative z-10 text-center">
 
         <motion.p
@@ -117,10 +108,6 @@ export const DateSection = () => {
 
         {/* Giant 24 with parallax + shimmer */}
         <div className="relative my-8 sm:my-12 flex items-center justify-center min-h-[200px] sm:min-h-[400px]">
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-35">
-            <LotusSVG className="w-56 h-56 sm:w-[450px] sm:h-[450px]" animatePetals />
-          </div>
-
           <motion.div style={{ y: numY, opacity: numOpacity }} className="relative z-10">
             <div className="relative inline-block overflow-hidden">
               <span className="font-header font-black text-[88px] sm:text-[180px] md:text-[280px] leading-none select-none shimmer-text drop-shadow-[0_10px_40px_rgba(200,162,77,0.4)]">

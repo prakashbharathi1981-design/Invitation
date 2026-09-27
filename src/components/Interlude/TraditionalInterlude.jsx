@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { DiyaSVG } from '../common/DiyaSVG';
-import { LotusSVG } from '../common/LotusSVG';
 import { MandalaSVG } from '../common/MandalaSVG';
 
 const vp = { once: true, margin: '-60px' };
@@ -141,13 +140,21 @@ export const TraditionalInterlude = () => {
         <TamilQuoteInk />
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={vp}
-          transition={{ duration: 1.2, delay: 0.5 }}
           className="flex justify-center my-8"
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={vp}
+          transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <LotusSVG className="w-48 h-48" animatePetals />
+          <motion.div
+            className="font-header text-8xl sm:text-9xl text-[#FFD700] tracking-wider gold-glow"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={vp}
+            transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            24
+          </motion.div>
         </motion.div>
       </div>
     </section>
