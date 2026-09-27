@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -92,6 +92,7 @@ export function App() {
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
   const [invitationRevealed, setInvitationRevealed] = useState(false);
   const [guestName, setGuestName] = useState('');
+  const musicRef = useRef(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -135,7 +136,7 @@ export function App() {
       <CornerDiyas />
 
       {/* Music toggle */}
-      <MusicButton />
+      <MusicButton ref={musicRef} />
 
       {/* Save card button */}
       <div className="fixed z-40" style={{ top: 'max(16px, env(safe-area-inset-top))', right: '16px' }}>
@@ -161,7 +162,7 @@ export function App() {
       {/* Envelope */}
       <AnimatePresence>
         {introDone && !isEnvelopeOpen && (
-          <Envelope guestName={guestName} onOpen={() => setIsEnvelopeOpen(true)} />
+          <Envelope guestName={guestName} onOpen={() => setIsEnvelopeOpen(true)} onMusicStart={() => musicRef.current?.play()} />
         )}
       </AnimatePresence>
 

@@ -155,10 +155,10 @@ html, body {
   padding: 0 16px;
 }
 
-/* Touch-friendly minimum tap target */
-button, a {
-  min-height: 44px;
-  min-width: 44px;
+/* Touch-friendly minimum tap target — only for actual buttons/links */
+button:not(.no-min-tap),
+a:not(.no-min-tap) {
+  min-height: 36px;
 }
 
 /* Phone-specific overrides */

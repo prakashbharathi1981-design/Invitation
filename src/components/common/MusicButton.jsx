@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { VolumeX } from 'lucide-react';
 
@@ -15,22 +15,17 @@ const Equalizer = () => {
     const t = setInterval(() => setFrame(f => (f + 1) % BAR_HEIGHTS.length), 220);
     return () => clearInterval(t);
   }, []);
-  const heights = BAR_HEIGHTS[frame];
   return (
     <div className="flex items-end gap-[2px] h-4">
-      {heights.map((h, i) => (
-        <motion.div
-          key={i}
-          className="w-[3px] rounded-full bg-[#FFD700]"
-          animate={{ height: h }}
-          transition={{ duration: 0.18, ease: 'easeInOut' }}
-        />
+      {BAR_HEIGHTS[frame].map((h, i) => (
+        <motion.div key={i} className="w-[3px] rounded-full bg-[#FFD700]"
+          animate={{ height: h }} transition={{ duration: 0.18, ease: 'easeInOut' }} />
       ))}
     </div>
   );
 };
 
-export const MusicButton = () => {
+export const MusicButton = forwardRef((props, ref) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
@@ -39,23 +34,25 @@ export const MusicButton = () => {
     audio.loop = true;
     audio.volume = 0.6;
     audioRef.current = audio;
-    return () => {
-      audio.pause();
-      audio.src = '';
-    };
+    return () => { audio.pause(); audio.src = ''; };
   }, []);
+
+  const play = () => {
+    const audio = audioRef.current;
+    if (!audio || isPlaying) return;
+    audio.play().catch(() => {});
+    setIsPlaying(true);
+  };
 
   const toggle = () => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-    } else {
-      audio.play().catch(() => {});
-      setIsPlaying(true);
-    }
+    if (isPlaying) { audio.pause(); setIsPlaying(false); }
+    else { audio.play().catch(() => {}); setIsPlaying(true); }
   };
+
+  // Expose play() to parent via ref
+  useImperativeHandle(ref, () => ({ play }));
 
   return (
     <div className="fixed z-50" style={{ bottom: 'max(24px, env(safe-area-inset-bottom))', right: '16px' }}>
@@ -71,14 +68,12 @@ export const MusicButton = () => {
         }`}
       >
         {isPlaying && (
-          <motion.div
-            className="absolute inset-0 pointer-events-none"
+          <motion.div className="absolute inset-0 pointer-events-none"
             style={{ background: 'linear-gradient(105deg, transparent 30%, rgba(255,215,0,0.08) 50%, transparent 70%)' }}
             animate={{ x: ['-100%', '200%'] }}
             transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
           />
         )}
-
         <AnimatePresence mode="wait">
           {isPlaying ? (
             <motion.div key="on" initial={{ opacity: 0, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.7 }} className="flex items-center gap-2">
@@ -96,4 +91,4 @@ export const MusicButton = () => {
       </motion.button>
     </div>
   );
-};
+});

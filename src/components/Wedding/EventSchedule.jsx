@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const vp = { once: true, margin: '-40px' };
+const vp = { once: true, margin: '-30px' };
 
-/* ── SVG Icons for each event ── */
-
+/* ── SVG Icons ── */
 const RingIcon = () => (
   <svg viewBox="0 0 40 40" className="w-full h-full" fill="none">
     <circle cx="20" cy="20" r="12" stroke="#FFD700" strokeWidth="2.5"/>
@@ -24,7 +23,6 @@ const LeafPlateIcon = () => (
   <svg viewBox="0 0 40 40" className="w-full h-full" fill="none">
     <ellipse cx="20" cy="22" rx="15" ry="10" stroke="#C8A24D" strokeWidth="1.8"/>
     <path d="M5 22 Q20 14 35 22" stroke="#FFD700" strokeWidth="1.2" strokeLinecap="round"/>
-    <path d="M8 22 Q20 17 32 22" stroke="#C8A24D" strokeWidth="0.8" strokeLinecap="round" opacity="0.5"/>
     <circle cx="20" cy="22" r="4" stroke="#FFD700" strokeWidth="1.5"/>
     <circle cx="20" cy="22" r="1.5" fill="#FFD700"/>
     <path d="M12 19 Q14 16 16 19" stroke="#C8A24D" strokeWidth="1" strokeLinecap="round"/>
@@ -37,19 +35,13 @@ const LeafPlateIcon = () => (
 
 const KalashamIcon = () => (
   <svg viewBox="0 0 40 40" className="w-full h-full" fill="none">
-    {/* Pot */}
     <path d="M14 28 Q12 20 14 16 Q17 12 20 12 Q23 12 26 16 Q28 20 26 28 Z" stroke="#C8A24D" strokeWidth="1.8" fill="rgba(200,162,77,0.1)"/>
-    {/* Neck */}
     <rect x="16" y="10" width="8" height="3" rx="1" stroke="#FFD700" strokeWidth="1.5"/>
-    {/* Coconut */}
     <ellipse cx="20" cy="8" rx="5" ry="4" stroke="#C8A24D" strokeWidth="1.5" fill="rgba(200,162,77,0.15)"/>
-    {/* Leaves */}
     <path d="M20 4 C16 0, 10 2, 12 6" stroke="#C8A24D" strokeWidth="1.2" strokeLinecap="round"/>
     <path d="M20 4 C24 0, 30 2, 28 6" stroke="#C8A24D" strokeWidth="1.2" strokeLinecap="round"/>
     <path d="M20 4 L20 1" stroke="#FFD700" strokeWidth="1.5" strokeLinecap="round"/>
-    {/* Base */}
     <rect x="13" y="28" width="14" height="2.5" rx="1" stroke="#FFD700" strokeWidth="1.2" fill="rgba(255,215,0,0.1)"/>
-    {/* Flame */}
     <motion.path d="M20 10 C19 8, 18 6, 20 5 C22 6, 21 8, 20 10 Z" fill="#FFD700"
       animate={{ scaleY: [1, 1.2, 0.9, 1], opacity: [0.7, 1, 0.7] }}
       transition={{ duration: 1.5, repeat: Infinity }}
@@ -60,21 +52,18 @@ const KalashamIcon = () => (
 
 const ReceptionIcon = () => (
   <svg viewBox="0 0 40 40" className="w-full h-full" fill="none">
-    {/* Stars */}
     {[[8,8],[32,8],[20,6],[8,32],[32,32]].map(([x,y], i) => (
       <motion.path key={i}
         d={`M${x} ${y-3} L${x+1} ${y-1} L${x+3} ${y} L${x+1} ${y+1} L${x} ${y+3} L${x-1} ${y+1} L${x-3} ${y} L${x-1} ${y-1} Z`}
-        fill="#FFD700" opacity="0.8"
+        fill="#FFD700"
         animate={{ scale: [0.8, 1.3, 0.8], opacity: [0.4, 1, 0.4] }}
         transition={{ duration: 1.5 + i * 0.3, repeat: Infinity, delay: i * 0.2 }}
         style={{ transformOrigin: `${x}px ${y}px` }}
       />
     ))}
-    {/* Couple silhouette */}
     <circle cx="16" cy="18" r="4" stroke="#C8A24D" strokeWidth="1.5"/>
     <circle cx="24" cy="18" r="4" stroke="#C8A24D" strokeWidth="1.5"/>
     <path d="M10 32 Q10 24 16 24 Q20 24 20 28 Q20 24 24 24 Q30 24 30 32" stroke="#C8A24D" strokeWidth="1.5" strokeLinecap="round"/>
-    {/* Heart above */}
     <motion.path d="M20 14 C20 14, 17 11, 15 13 C13 15, 15 18, 20 21 C25 18, 27 15, 25 13 C23 11, 20 14, 20 14 Z"
       fill="#FFD700" opacity="0.6"
       animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.9, 0.5] }}
@@ -86,44 +75,37 @@ const ReceptionIcon = () => (
 
 const SunriseIcon = () => (
   <svg viewBox="0 0 40 40" className="w-full h-full" fill="none">
-    {/* Horizon */}
     <path d="M4 28 L36 28" stroke="#C8A24D" strokeWidth="1.5" strokeLinecap="round"/>
-    {/* Sun */}
     <motion.circle cx="20" cy="24" r="7" stroke="#FFD700" strokeWidth="2"
       animate={{ y: [0, -3, 0] }} transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
     />
     <motion.circle cx="20" cy="24" r="4" fill="rgba(255,215,0,0.3)"
       animate={{ y: [0, -3, 0] }} transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
     />
-    {/* Rays */}
     {[0,45,90,135,180,225,270,315].map((angle, i) => {
       const rad = angle * Math.PI / 180;
-      const x1 = 20 + 9 * Math.cos(rad), y1 = 24 + 9 * Math.sin(rad);
-      const x2 = 20 + 13 * Math.cos(rad), y2 = 24 + 13 * Math.sin(rad);
       return (
-        <motion.line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+        <motion.line key={i}
+          x1={20 + 9 * Math.cos(rad)} y1={24 + 9 * Math.sin(rad)}
+          x2={20 + 13 * Math.cos(rad)} y2={24 + 13 * Math.sin(rad)}
           stroke="#FFD700" strokeWidth="1.5" strokeLinecap="round"
           animate={{ opacity: [0.3, 1, 0.3], y: [0, -3, 0] }}
           transition={{ duration: 3, repeat: Infinity, delay: i * 0.1, ease: 'easeInOut' }}
         />
       );
     })}
-    {/* Ground waves */}
     <path d="M4 32 Q10 30 16 32 Q22 34 28 32 Q34 30 36 32" stroke="#C8A24D" strokeWidth="1" strokeLinecap="round" opacity="0.5"/>
   </svg>
 );
 
 const FeastIcon = () => (
   <svg viewBox="0 0 40 40" className="w-full h-full" fill="none">
-    {/* Table */}
     <rect x="6" y="26" width="28" height="3" rx="1.5" stroke="#C8A24D" strokeWidth="1.5" fill="rgba(200,162,77,0.1)"/>
     <line x1="10" y1="29" x2="10" y2="36" stroke="#C8A24D" strokeWidth="1.5" strokeLinecap="round"/>
     <line x1="30" y1="29" x2="30" y2="36" stroke="#C8A24D" strokeWidth="1.5" strokeLinecap="round"/>
-    {/* Dishes */}
     <ellipse cx="14" cy="26" rx="5" ry="2" stroke="#FFD700" strokeWidth="1.2"/>
     <ellipse cx="26" cy="26" rx="5" ry="2" stroke="#FFD700" strokeWidth="1.2"/>
     <ellipse cx="20" cy="26" rx="3" ry="1.5" fill="rgba(255,215,0,0.2)" stroke="#FFD700" strokeWidth="1"/>
-    {/* Steam */}
     {[14, 20, 26].map((x, i) => (
       <motion.path key={i} d={`M${x} 22 Q${x+2} 19 ${x} 16`}
         stroke="#FFF9ED" strokeWidth="1" strokeLinecap="round" fill="none"
@@ -131,236 +113,192 @@ const FeastIcon = () => (
         transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
       />
     ))}
-    {/* Banana leaf */}
     <path d="M8 24 Q14 20 20 24 Q26 20 32 24" stroke="#C8A24D" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
   </svg>
 );
 
-const events = [
-  {
-    id: 1,
-    title: 'Engagement',
-    time: '11:00 AM – 12:00 PM',
-    date: '24 October 2026',
-    desc: 'The sacred exchange of rings — two souls bound by destiny',
-    icon: RingIcon,
-    color: '#FFD700',
-  },
-  {
-    id: 2,
-    title: 'Traditional Lunch',
-    time: '12:00 PM – 1:30 PM',
-    date: '24 October 2026',
-    desc: 'A grand feast served with love on banana leaves',
-    icon: LeafPlateIcon,
-    color: '#C8A24D',
-  },
-  {
-    id: 3,
-    title: 'Muhurtham Pole Ceremony',
-    time: '5:00 PM – 6:00 PM',
-    date: '24 October 2026',
-    desc: 'The auspicious moment — blessings of the divine',
-    icon: KalashamIcon,
-    color: '#FFD700',
-  },
-  {
-    id: 4,
-    title: 'Reception',
-    time: '6:00 PM – 9:00 PM',
-    date: '24 October 2026',
-    desc: 'An evening of celebration, joy and togetherness',
-    icon: ReceptionIcon,
-    color: '#C8A24D',
-  },
-  {
-    id: 5,
-    title: 'Wedding Ceremony',
-    time: '5:00 AM – 6:00 AM',
-    date: '25 October 2026',
-    desc: 'The sacred union under the morning stars',
-    icon: SunriseIcon,
-    color: '#FFD700',
-  },
-  {
-    id: 6,
-    title: 'Sambandhi Virundhu',
-    time: '12:00 PM – 1:00 PM',
-    date: '25 October 2026',
-    desc: 'A joyous feast uniting two beloved families',
-    icon: FeastIcon,
-    color: '#C8A24D',
-  },
+/* ── Clock SVG ── */
+const ClockSVG = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
+    <circle cx="12" cy="12" r="9" stroke="#FFD700" strokeWidth="1.8"/>
+    <path d="M12 7 L12 12 L16 15" stroke="#FFD700" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+/* ── Day separator ── */
+const DaySeparator = ({ day, date, tamil }) => (
+  <motion.div
+    className="flex items-center gap-3 my-6"
+    initial={{ opacity: 0, x: -20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={vp}
+    transition={{ duration: 0.7 }}
+  >
+    <div className="flex-1 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, #C8A24D)' }} />
+    <div className="text-center px-3 py-1.5 rounded-full border border-[#C8A24D]/50 bg-[#421520]/60">
+      <p className="font-sans text-[9px] uppercase tracking-widest text-[#FFD700]">{day}</p>
+      <p className="font-sans text-[10px] text-[#C8A24D] font-semibold">{date}</p>
+      <p className="font-sans text-[9px] text-[#F5EBD2]/60">{tamil}</p>
+    </div>
+    <div className="flex-1 h-[1px]" style={{ background: 'linear-gradient(90deg, #C8A24D, transparent)' }} />
+  </motion.div>
+);
+
+/* ── Event data with Tamil ── */
+const day1 = [
+  { id: 1, tamil: 'நிச்சயதார்த்தம்', time: 'காலை 11.00 – 12.00 மணி', icon: RingIcon, color: '#FFD700' },
+  { id: 2, tamil: 'பட்டினிச்சாத் இருந்து மதியம்', time: 'மதியம் 12.00 – 1.30 மணி', icon: LeafPlateIcon, color: '#C8A24D' },
+  { id: 3, tamil: 'முகூர்த்தக்கால்', time: 'மாலை 5.00 – 6.00 மணி', icon: KalashamIcon, color: '#FFD700' },
+  { id: 4, tamil: 'வரவேற்பு', time: 'மாலை 6.00 – 9.00 மணி', icon: ReceptionIcon, color: '#C8A24D' },
 ];
 
-/* ── Vertical timeline connector ── */
-const TimelineConnector = ({ index }) => (
-  <div className="absolute left-[39px] sm:left-[47px] top-full w-[2px] h-8 overflow-hidden">
-    <motion.div
-      className="w-full h-full"
-      style={{ background: 'linear-gradient(to bottom, #C8A24D, transparent)' }}
-      initial={{ scaleY: 0 }}
-      whileInView={{ scaleY: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-      style2={{ transformOrigin: 'top' }}
-    />
-  </div>
-);
+const day2 = [
+  { id: 5, tamil: 'சமூகார்த்தம்', time: 'காலை 5.00 – 6.00 மணி', icon: SunriseIcon, color: '#FFD700' },
+  { id: 6, tamil: 'சம்பந்தி விருந்து', time: 'மதியம் 12.00 – 1.00 மணி', icon: FeastIcon, color: '#C8A24D' },
+];
 
 /* ── Single event card ── */
 const EventCard = ({ event, index }) => {
-  const [hovered, setHovered] = useState(false);
+  const [active, setActive] = useState(false);
   const Icon = event.icon;
 
   return (
     <motion.div
-      className="relative flex gap-4 sm:gap-6"
-      initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={vp}
-      transition={{ duration: 0.8, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      onTouchStart={() => setActive(true)}
+      onTouchEnd={() => setTimeout(() => setActive(false), 600)}
+      onHoverStart={() => setActive(true)}
+      onHoverEnd={() => setActive(false)}
+      className="relative rounded-2xl overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, rgba(66,21,32,0.7) 0%, rgba(23,11,16,0.95) 100%)',
+        border: `1px solid ${active ? event.color + 'AA' : 'rgba(200,162,77,0.25)'}`,
+        boxShadow: active
+          ? `0 8px 32px rgba(0,0,0,0.7), 0 0 20px ${event.color}30`
+          : '0 4px 16px rgba(0,0,0,0.5)',
+        transition: 'border-color 0.3s, box-shadow 0.3s',
+      }}
     >
-      {/* Icon circle + connector */}
-      <div className="relative flex-shrink-0">
+      {/* Shimmer on active */}
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            className="absolute inset-0 pointer-events-none z-10"
+            style={{ background: 'linear-gradient(105deg, transparent 25%, rgba(255,215,0,0.06) 50%, transparent 75%)' }}
+            initial={{ x: '-100%' }} animate={{ x: '200%' }}
+            transition={{ duration: 0.7 }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Top accent line */}
+      <motion.div
+        className="absolute top-0 left-0 h-[2px] rounded-full"
+        style={{ background: `linear-gradient(90deg, ${event.color}, transparent)` }}
+        initial={{ width: 0 }}
+        whileInView={{ width: '60%' }}
+        viewport={vp}
+        transition={{ duration: 1, delay: 0.2 + index * 0.08 }}
+        animate={{ width: active ? '100%' : '60%' }}
+      />
+
+      {/* Corner ornament */}
+      <svg className="absolute top-2 right-2 w-6 h-6 opacity-25 pointer-events-none" viewBox="0 0 24 24" fill="none">
+        <path d="M2 2 L2 9 M2 2 L9 2" stroke="#FFD700" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M22 22 L22 15 M22 22 L15 22" stroke="#FFD700" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+
+      <div className="flex items-center gap-3 p-4">
+        {/* Icon */}
         <motion.div
-          className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center"
+          className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
           style={{
             background: 'linear-gradient(135deg, #421520 0%, #170B10 100%)',
-            border: `2px solid ${hovered ? event.color : 'rgba(200,162,77,0.4)'}`,
-            boxShadow: hovered ? `0 0 24px ${event.color}60, 0 0 48px ${event.color}30` : '0 4px 20px rgba(0,0,0,0.5)',
-            transition: 'all 0.4s ease',
+            border: `1.5px solid ${active ? event.color : 'rgba(200,162,77,0.4)'}`,
+            boxShadow: active ? `0 0 16px ${event.color}50` : 'none',
+            transition: 'all 0.3s',
           }}
-          whileHover={{ scale: 1.1 }}
-          onHoverStart={() => setHovered(true)}
-          onHoverEnd={() => setHovered(false)}
+          animate={{ scale: active ? 1.08 : 1 }}
+          transition={{ duration: 0.3 }}
         >
-          {/* Spinning ring on hover */}
-          <AnimatePresence>
-            {hovered && (
-              <motion.div
-                className="absolute inset-[-4px] rounded-full border border-dashed border-[#FFD700]/40 pointer-events-none"
-                initial={{ opacity: 0, rotate: 0 }}
-                animate={{ opacity: 1, rotate: 360 }}
-                exit={{ opacity: 0 }}
-                transition={{ rotate: { duration: 8, repeat: Infinity, ease: 'linear' }, opacity: { duration: 0.3 } }}
-              />
-            )}
-          </AnimatePresence>
-
           {/* Pulsing aura */}
           <motion.div
-            className="absolute inset-0 rounded-full pointer-events-none"
-            style={{ background: `radial-gradient(circle, ${event.color}20 0%, transparent 70%)` }}
-            animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.8, 0.4] }}
-            transition={{ duration: 3, repeat: Infinity, delay: index * 0.4 }}
+            className="absolute w-12 h-12 rounded-full pointer-events-none"
+            style={{ background: `radial-gradient(circle, ${event.color}15 0%, transparent 70%)` }}
+            animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.7, 0.3] }}
+            transition={{ duration: 3, repeat: Infinity, delay: index * 0.3 }}
           />
-
-          <div className="w-10 h-10 sm:w-12 sm:h-12 relative z-10">
+          <div className="w-6 h-6 relative z-10">
             <Icon />
           </div>
         </motion.div>
 
-        {/* Vertical connector (not on last item) */}
-        {index < events.length - 1 && <TimelineConnector index={index} />}
-      </div>
-
-      {/* Content card */}
-      <motion.div
-        className="flex-1 mb-8 p-5 sm:p-6 rounded-2xl relative overflow-hidden cursor-default"
-        style={{
-          background: 'linear-gradient(135deg, rgba(66,21,32,0.6) 0%, rgba(23,11,16,0.9) 100%)',
-          border: `1px solid ${hovered ? event.color + '80' : 'rgba(200,162,77,0.25)'}`,
-          boxShadow: hovered ? `0 8px 40px rgba(0,0,0,0.6), 0 0 20px ${event.color}20` : '0 4px 20px rgba(0,0,0,0.4)',
-          transition: 'all 0.4s ease',
-        }}
-        onHoverStart={() => setHovered(true)}
-        onHoverEnd={() => setHovered(false)}
-      >
-        {/* Shimmer sweep */}
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              className="absolute inset-0 pointer-events-none"
-              style={{ background: 'linear-gradient(105deg, transparent 25%, rgba(255,215,0,0.06) 50%, transparent 75%)' }}
-              initial={{ x: '-100%' }}
-              animate={{ x: '200%' }}
-              transition={{ duration: 0.8 }}
-            />
-          )}
-        </AnimatePresence>
-
-        {/* Corner ornament */}
-        <svg className="absolute top-2 right-2 w-8 h-8 opacity-30" viewBox="0 0 32 32" fill="none">
-          <path d="M2 2 L2 12 M2 2 L12 2" stroke="#FFD700" strokeWidth="1.5" strokeLinecap="round"/>
-          <path d="M30 30 L30 20 M30 30 L20 30" stroke="#FFD700" strokeWidth="1.5" strokeLinecap="round"/>
-        </svg>
-
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
-          <h3 className="font-header text-lg sm:text-xl text-[#FFF9ED] tracking-wider">{event.title}</h3>
-          <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-[#C8A24D] whitespace-nowrap">{event.date}</span>
+        {/* Text */}
+        <div className="flex-1 min-w-0">
+          <h3 className="font-header text-sm sm:text-base text-[#FFF9ED] tracking-wide leading-tight mb-1">
+            {event.tamil}
+          </h3>
+          <div className="flex items-center gap-1.5">
+            <ClockSVG />
+            <span className="font-sans text-[11px] sm:text-xs text-[#FFD700] font-semibold">{event.time}</span>
+          </div>
         </div>
 
-        {/* Time badge */}
-        <div className="inline-flex items-center gap-2 mb-3">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="9" stroke="#FFD700" strokeWidth="1.8"/>
-            <path d="M12 7 L12 12 L16 15" stroke="#FFD700" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <span className="font-sans text-sm font-semibold text-[#FFD700] tracking-wider">{event.time}</span>
-        </div>
-
-        <p className="font-body italic text-[#F5EBD2]/65 text-sm leading-relaxed">{event.desc}</p>
-
-        {/* Bottom gold line reveal */}
+        {/* Right gold dot */}
         <motion.div
-          className="absolute bottom-0 left-0 h-[2px] rounded-full"
-          style={{ background: `linear-gradient(90deg, ${event.color}, transparent)` }}
-          initial={{ width: 0 }}
-          whileInView={{ width: hovered ? '100%' : '40%' }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.3 + index * 0.1 }}
-          animate={{ width: hovered ? '100%' : '40%' }}
+          className="flex-shrink-0 w-2 h-2 rounded-full"
+          style={{ background: event.color, boxShadow: `0 0 6px ${event.color}` }}
+          animate={{ opacity: [0.4, 1, 0.4], scale: [0.8, 1.3, 0.8] }}
+          transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
         />
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
 
 export const EventSchedule = () => (
-  <section className="relative py-20 px-4 overflow-hidden">
-    {/* Background glow */}
+  <section className="relative py-16 px-4 overflow-hidden">
     <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(66,21,32,0.35) 0%, transparent 70%)' }} />
 
-    <div className="max-w-2xl mx-auto relative z-10">
+    <div className="max-w-lg mx-auto relative z-10">
+
       {/* Header */}
-      <div className="text-center mb-14">
+      <div className="text-center mb-10">
         <motion.p
-          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={vp} transition={{ duration: 1 }}
-          className="font-sans text-[10px] uppercase tracking-[0.5em] text-[#C8A24D] mb-3"
+          initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={vp} transition={{ duration: 0.8 }}
+          className="font-sans text-[10px] uppercase tracking-[0.5em] text-[#C8A24D] mb-2"
         >
-          ✦ THE SACRED TIMELINE ✦
+          ✦ நிகழ்ச்சி நிரல் ✦
         </motion.p>
         <motion.h2
-          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={vp} transition={{ duration: 1, delay: 0.2 }}
-          className="font-header text-2xl sm:text-4xl text-[#FFF9ED] tracking-widest mb-3"
+          initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={vp} transition={{ duration: 0.8, delay: 0.15 }}
+          className="font-script text-3xl sm:text-4xl text-[#FFD700] mb-1"
         >
-          CEREMONIES & CELEBRATIONS
+          நிகழ்ச்சிகள் & கொண்டாட்டங்கள்
         </motion.h2>
         <motion.div
-          className="h-[1px] mx-auto rounded-full"
+          className="h-[1px] mx-auto rounded-full mt-3"
           style={{ background: 'linear-gradient(90deg, transparent, #C8A24D, #FFD700, #C8A24D, transparent)' }}
-          initial={{ width: 0 }} whileInView={{ width: '60%' }} viewport={vp}
-          transition={{ duration: 1.2, delay: 0.4 }}
+          initial={{ width: 0 }} whileInView={{ width: '70%' }} viewport={vp}
+          transition={{ duration: 1, delay: 0.3 }}
         />
       </div>
 
-      {/* Timeline */}
-      <div className="relative">
-        {events.map((event, i) => (
-          <EventCard key={event.id} event={event} index={i} />
-        ))}
+      {/* Day 1 */}
+      <DaySeparator day="சனிக்கிழமை" date="24.10.2026" tamil="ஐப்பசி 07 ஆம் நாள்" />
+      <div className="flex flex-col gap-3">
+        {day1.map((e, i) => <EventCard key={e.id} event={e} index={i} />)}
       </div>
+
+      {/* Day 2 */}
+      <DaySeparator day="ஞாயிற்றுக்கிழமை" date="25.10.2026" tamil="ஐப்பசி 08 ஆம் நாள்" />
+      <div className="flex flex-col gap-3">
+        {day2.map((e, i) => <EventCard key={e.id} event={e} index={i + 4} />)}
+      </div>
+
     </div>
   </section>
 );

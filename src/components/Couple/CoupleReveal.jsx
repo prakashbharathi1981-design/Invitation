@@ -169,7 +169,7 @@ export const CoupleReveal = () => {
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={vp}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full max-w-xs sm:max-w-xl mx-auto px-4 sm:px-8"
+        className="relative w-full max-w-[280px] sm:max-w-xl mx-auto px-3 sm:px-8"
       >
         {/* ── Outer pulsing gold aura ── */}
         <motion.div
@@ -217,11 +217,11 @@ export const CoupleReveal = () => {
           return (
             <motion.div
               key={i}
-              className="absolute w-1.5 h-1.5 rounded-full bg-[#FFD700] pointer-events-none z-30"
+              className="absolute w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-[#FFD700] pointer-events-none z-30"
               style={{
-                left: `${50 + 52 * Math.cos(rad)}%`,
-                top: `${50 + 52 * Math.sin(rad)}%`,
-                boxShadow: '0 0 6px #FFD700',
+                left: `${50 + 48 * Math.cos(rad)}%`,
+                top: `${50 + 48 * Math.sin(rad)}%`,
+                boxShadow: '0 0 4px #FFD700',
               }}
               animate={{ opacity: [0.2, 1, 0.2], scale: [0.6, 1.4, 0.6] }}
               transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.3, ease: 'easeInOut' }}

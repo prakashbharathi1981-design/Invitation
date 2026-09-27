@@ -92,7 +92,7 @@ export const VenueSection = () => {
           onHoverEnd={() => setActive(false)}
           onTouchStart={() => setActive(true)}
           onTouchEnd={() => setTimeout(() => setActive(false), 400)}
-          className="max-w-2xl mx-auto p-8 sm:p-12 rounded-2xl text-center my-8 shadow-2xl relative overflow-hidden cursor-default"
+          className="max-w-2xl mx-auto p-5 sm:p-10 rounded-2xl text-center my-6 sm:my-8 shadow-2xl relative overflow-hidden cursor-default"
           style={{
             background: 'linear-gradient(145deg, rgba(66,21,32,0.6) 0%, rgba(23,11,16,0.95) 100%)',
             border: '1px solid rgba(200,162,77,0.4)',
@@ -133,14 +133,14 @@ export const VenueSection = () => {
           <PulsePin />
 
           <motion.h3
-            className="font-header text-2xl sm:text-4xl text-[#FFD700] mb-4"
+            className="font-header text-xl sm:text-4xl text-[#FFD700] mb-3 sm:mb-4"
             animate={{ textShadow: hovered ? '0 0 20px rgba(255,215,0,0.6)' : '0 0 0px transparent' }}
             transition={{ duration: 0.3 }}
           >
             Sri Krishna Mahal
           </motion.h3>
 
-          <p className="font-body text-xl sm:text-2xl text-[#FFF9ED] leading-relaxed mb-6">
+          <p className="font-body text-base sm:text-2xl text-[#FFF9ED] leading-relaxed mb-4 sm:mb-6">
             Nachipalayam Road Corner,<br />
             Trichy – Kovai Main Road,<br />
             <span className="font-semibold text-[#FFD700]">Avinashipalayam.</span>
@@ -152,7 +152,7 @@ export const VenueSection = () => {
             <img
               src="/images/Untitled.jpeg"
               alt="QR code for directions"
-              className="w-40 h-40 sm:w-48 sm:h-48 object-contain"
+              className="w-32 h-32 sm:w-48 sm:h-48 object-contain"
             />
           </div>
           <p className="mt-3 font-sans text-[10px] sm:text-xs uppercase tracking-widest text-[#C8A24D]">
@@ -160,7 +160,7 @@ export const VenueSection = () => {
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 sm:mt-8">
             <motion.a
               href={mapsUrl}
               target="_blank"

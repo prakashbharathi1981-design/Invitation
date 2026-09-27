@@ -134,7 +134,7 @@ const SplitText = ({ text, className, delay = 0, stagger = 0.06 }) => (
   </span>
 );
 
-export const Envelope = ({ onOpen, guestName }) => {
+export const Envelope = ({ onOpen, guestName, onMusicStart }) => {
   const [phase, setPhase] = useState(0);
   // phase 0 = dark intro, phase 1 = card reveal, phase 2 = full card shown
 
@@ -322,7 +322,7 @@ export const Envelope = ({ onOpen, guestName }) => {
               transition={{ delay: 2, duration: 0.8, ease: 'backOut' }}
             >
               <motion.button
-                onClick={onOpen}
+                onClick={() => { onMusicStart?.(); onOpen(); }}
                 whileHover={{ scale: 1.06, boxShadow: '0 0 40px rgba(200,162,77,0.8)' }}
                 whileTap={{ scale: 0.94 }}
                 className="relative inline-flex items-center gap-3 px-8 py-4 font-sans font-bold text-sm uppercase tracking-widest text-[#170B10] rounded-full border border-[#FFF9ED] overflow-hidden"

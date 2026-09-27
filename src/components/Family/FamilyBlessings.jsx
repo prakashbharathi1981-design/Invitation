@@ -47,7 +47,7 @@ export const FamilyBlessings = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 1 }}
-          className="font-script text-3xl sm:text-4xl text-[#FFD700] mb-6 drop-shadow-md"
+          className="font-script text-2xl sm:text-4xl text-[#FFD700] mb-4 sm:mb-6 drop-shadow-md"
         >
           With the celestial blessings of our ancestors...
         </motion.p>
@@ -57,7 +57,7 @@ export const FamilyBlessings = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 1, delay: 0.2 }}
-          className="font-header text-3xl sm:text-5xl text-[#FFF9ED] tracking-wider mb-12"
+          className="font-header text-2xl sm:text-5xl text-[#FFF9ED] tracking-wider mb-8 sm:mb-12"
         >
           WITH THE CELESTIAL BLESSINGS<br className="hidden sm:block" /> OF OUR BELOVED FAMILIES
         </motion.h2>
@@ -67,7 +67,7 @@ export const FamilyBlessings = () => {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl mx-auto p-8 sm:p-14 text-center rounded-2xl relative shadow-2xl"
+          className="max-w-3xl mx-auto p-5 sm:p-10 text-center rounded-2xl relative shadow-2xl"
           style={{
             background: 'linear-gradient(145deg, rgba(66,21,32,0.5) 0%, rgba(23,11,16,0.95) 100%)',
             border: '1px solid rgba(200,162,77,0.35)',
@@ -119,7 +119,7 @@ export const FamilyBlessings = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={vp}
             transition={{ duration: 1, delay: 0.4 }}
-            className="font-body text-xl sm:text-2xl text-[#F5EBD2] leading-relaxed max-w-xl mx-auto italic font-medium my-6"
+            className="font-body text-base sm:text-2xl text-[#F5EBD2] leading-relaxed max-w-xl mx-auto italic font-medium my-4 sm:my-6"
           >
             "We cordially solicit your esteemed presence with family and friends on the auspicious occasion of the wedding reception of Gokulakrishnan & Karpagavalli."
           </motion.p>

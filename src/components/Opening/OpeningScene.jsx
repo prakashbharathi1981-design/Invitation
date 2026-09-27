@@ -79,7 +79,7 @@ export const OpeningScene = ({ onReveal, invitationRevealed }) => {
         style={{ background: 'radial-gradient(ellipse 80% 70% at 50% 50%, #421520 0%, #170B10 100%)' }}
       />
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <MandalaSVG className="w-[700px] h-[700px] sm:w-[900px] sm:h-[900px]" opacity={0.1} />
+        <MandalaSVG className="w-full h-full max-w-[500px] max-h-[500px] sm:max-w-[900px] sm:max-h-[900px]" opacity={0.1} />
       </div>
       <motion.div
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
@@ -106,22 +106,22 @@ export const OpeningScene = ({ onReveal, invitationRevealed }) => {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="relative z-10 flex flex-col items-center w-full px-2">
 
         <motion.div
           initial={{ opacity: 0, y: -30, scale: 0.7 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-3"
+          className="mb-2"
         >
-          <DiyaSVG className="w-16 h-16" />
+          <DiyaSVG className="w-12 h-12 sm:w-16 sm:h-16" />
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, letterSpacing: '0.1em' }}
-          animate={{ opacity: 1, letterSpacing: '0.35em' }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.5 }}
-          className="font-sans text-xs uppercase text-[#C8A24D] mb-2 font-semibold"
+          className="font-sans text-[10px] sm:text-xs uppercase tracking-[0.3em] text-[#C8A24D] mb-2 font-semibold text-center"
         >
           With the blessings of our elders
         </motion.p>
@@ -132,28 +132,28 @@ export const OpeningScene = ({ onReveal, invitationRevealed }) => {
           initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1.3, delay: 2, ease: [0.22, 1, 0.36, 1] }}
-          className="my-4"
+          className="my-3"
         >
-          <GaneshaSVG className="w-28 h-32" />
+          <GaneshaSVG className="w-20 h-24 sm:w-28 sm:h-32" />
         </motion.div>
 
         <motion.h2
           initial={{ opacity: 0, y: 15, filter: 'blur(8px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 1, delay: 2.6 }}
-          className="font-header text-lg sm:text-xl text-[#FFF9ED] tracking-[0.3em] mb-8"
+          className="font-header text-sm sm:text-lg text-[#FFF9ED] tracking-[0.25em] sm:tracking-[0.3em] mb-5 text-center"
         >
           A NEW CHAPTER BEGINS
         </motion.h2>
 
-        <FloralDivider className="w-56 mb-8" />
+        <FloralDivider className="w-44 sm:w-56 mb-5" />
 
-        <div className="mb-2" style={{ perspective: 800 }}>
-          <SplitReveal text="GOKULAKRISHNAN" className="font-header text-3xl sm:text-5xl md:text-6xl text-[#FFF9ED] tracking-wide gold-glow-text" delay={3} stagger={0.05} />
+        <div className="mb-1 w-full text-center overflow-hidden" style={{ perspective: 800 }}>
+          <SplitReveal text="GOKULAKRISHNAN" className="font-header text-2xl xs:text-3xl sm:text-5xl md:text-6xl text-[#FFF9ED] tracking-wide gold-glow-text" delay={3} stagger={0.04} />
         </div>
 
         <motion.div
-          className="font-script text-5xl sm:text-6xl text-[#FFD700] my-2"
+          className="font-script text-4xl sm:text-5xl text-[#FFD700] my-1"
           initial={{ opacity: 0, scale: 0.3, rotate: -20 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ delay: 4, duration: 0.7, ease: 'backOut' }}
@@ -161,8 +161,8 @@ export const OpeningScene = ({ onReveal, invitationRevealed }) => {
           &
         </motion.div>
 
-        <div className="mb-8" style={{ perspective: 800 }}>
-          <SplitReveal text="KARPAGAVALLI" className="font-header text-3xl sm:text-5xl md:text-6xl text-[#FFF9ED] tracking-wide gold-glow-text" delay={4.1} stagger={0.06} />
+        <div className="mb-6 w-full text-center overflow-hidden" style={{ perspective: 800 }}>
+          <SplitReveal text="KARPAGAVALLI" className="font-header text-2xl xs:text-3xl sm:text-5xl md:text-6xl text-[#FFF9ED] tracking-wide gold-glow-text" delay={4.1} stagger={0.05} />
         </div>
 
         {/* Date pill */}
@@ -170,7 +170,7 @@ export const OpeningScene = ({ onReveal, invitationRevealed }) => {
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 4.9, duration: 0.9, ease: 'backOut' }}
-          className="relative inline-block px-8 py-3 rounded-full border border-[#C8A24D] overflow-hidden mb-10"
+          className="relative inline-block px-5 sm:px-8 py-2.5 sm:py-3 rounded-full border border-[#C8A24D] overflow-hidden mb-8"
           style={{ background: 'rgba(66,21,32,0.8)', boxShadow: '0 0 25px rgba(200,162,77,0.3)' }}
         >
           <motion.div
@@ -179,7 +179,7 @@ export const OpeningScene = ({ onReveal, invitationRevealed }) => {
             animate={{ x: ['-100%', '200%'] }}
             transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
           />
-          <span className="font-sans text-sm sm:text-base tracking-[0.25em] text-[#FFD700] font-semibold relative z-10">
+          <span className="font-sans text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] text-[#FFD700] font-semibold relative z-10">
             24 OCTOBER 2026
           </span>
         </motion.div>
@@ -199,7 +199,7 @@ export const OpeningScene = ({ onReveal, invitationRevealed }) => {
                 disabled={tapped}
                 whileHover={{ scale: 1.06, boxShadow: '0 0 50px rgba(200,162,77,0.9)' }}
                 whileTap={{ scale: 0.93 }}
-                className="relative inline-flex items-center gap-3 px-10 py-4 font-sans font-bold text-sm uppercase tracking-widest text-[#170B10] rounded-full border border-[#FFF9ED] overflow-hidden"
+                className="relative inline-flex items-center gap-2 px-7 py-3.5 sm:px-10 sm:py-4 font-sans font-bold text-xs sm:text-sm uppercase tracking-widest text-[#170B10] rounded-full border border-[#FFF9ED] overflow-hidden"
                 style={{ background: 'linear-gradient(135deg, #C8A24D 0%, #E5CD89 40%, #FFD700 60%, #997327 100%)' }}
               >
                 {/* Shimmer sweep */}

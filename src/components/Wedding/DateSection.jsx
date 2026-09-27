@@ -116,15 +116,14 @@ export const DateSection = () => {
         </motion.h2>
 
         {/* Giant 24 with parallax + shimmer */}
-        <div className="relative my-12 flex items-center justify-center min-h-[300px] sm:min-h-[400px]">
+        <div className="relative my-8 sm:my-12 flex items-center justify-center min-h-[200px] sm:min-h-[400px]">
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-35">
-            <LotusSVG className="w-80 h-80 sm:w-[450px] sm:h-[450px]" animatePetals />
+            <LotusSVG className="w-56 h-56 sm:w-[450px] sm:h-[450px]" animatePetals />
           </div>
 
           <motion.div style={{ y: numY, opacity: numOpacity }} className="relative z-10">
-            {/* Shimmer sweep over the 24 */}
             <div className="relative inline-block overflow-hidden">
-              <span className="font-header font-black text-[120px] sm:text-[220px] md:text-[280px] leading-none select-none shimmer-text drop-shadow-[0_10px_40px_rgba(200,162,77,0.4)]">
+              <span className="font-header font-black text-[88px] sm:text-[180px] md:text-[280px] leading-none select-none shimmer-text drop-shadow-[0_10px_40px_rgba(200,162,77,0.4)]">
                 24
               </span>
               <motion.div
@@ -142,7 +141,7 @@ export const DateSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 1 }}
-          className="font-header text-2xl sm:text-3xl tracking-[0.3em] text-[#FFD700] mb-16"
+          className="font-header text-xl sm:text-3xl tracking-[0.2em] sm:tracking-[0.3em] text-[#FFD700] mb-10 sm:mb-16"
         >
           OCTOBER 2026
         </motion.div>
@@ -156,7 +155,7 @@ export const DateSection = () => {
         >
           {/* Cursive Handwriting Reveal */}
           <motion.p
-            className="font-script text-4xl sm:text-5xl lg:text-6xl text-[#FFD700] drop-shadow-lg relative inline-block"
+            className="font-script text-3xl sm:text-5xl lg:text-6xl text-[#FFD700] drop-shadow-lg relative inline-block px-2 text-center"
             initial={{ clipPath: 'inset(0 100% 0 0)' }}
             whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
             viewport={vp}
@@ -173,14 +172,14 @@ export const DateSection = () => {
           <span className="font-sans text-xs uppercase tracking-[0.4em] text-[#C8A24D] block mb-2">
             ✦ THE CELEBRATION AWAITS ✦
           </span>
-          <h3 className="font-header text-3xl sm:text-4xl text-[#FFF9ED] mb-6">THE GRAND CELEBRATION OF LOVE</h3>
+          <h3 className="font-header text-xl sm:text-4xl text-[#FFF9ED] mb-4 sm:mb-6">THE GRAND CELEBRATION OF LOVE</h3>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={vp}
             transition={{ duration: 1 }}
-            className="inline-flex flex-wrap items-center justify-center gap-6 p-6 rounded-xl bg-[#421520]/60 border border-[#C8A24D]/50 shadow-xl max-w-xl mx-auto my-6 relative overflow-hidden"
+            className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-6 p-4 sm:p-6 rounded-xl bg-[#421520]/60 border border-[#C8A24D]/50 shadow-xl w-full max-w-xl mx-auto my-4 sm:my-6 relative overflow-hidden"
           >
             {/* Shimmer on card */}
             <motion.div
